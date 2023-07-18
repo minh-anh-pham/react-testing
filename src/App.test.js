@@ -14,25 +14,33 @@ test('App should render', () => {
 });
 
 test('Button should render', () => {
-  // TODO: change the expect to actually test something 😉
-  expect('no test written').toBe('tested');
+  // TODO: change the expect to actually test something
+  render(<App />);
+
+  expect(screen.getAllByRole('button'));
 });
 
 /**
  * Verify clicking button should change theme
  * hint: use fireEvent.click(element) to trigger a click event on an element
  */
-test('theme button should update button text', () => {
-  // TODO: change the expect to actually test something 😉
-  expect('no test written').toBe('tested');
+test('Theme button should update button text', () => {
+  // TODO: change the expect to actually test something
+  const {getByTestId} = render(<App />);
+  expect(getByTestId("theme")).toBeInTheDocument();
+  fireEvent.click(getByTestId("theme"));
+  expect(getByTestId("theme")).toHaveTextContent("Current theme: dark");
 });
 
 // BONUS
 // hint: there is a `.toHaveStyle` method.
 // e.g.: expect(element).toHaveStyle('color: #FFF');
 test('theme button should toggle styles', () => {
-  // TODO: change the expect to actually test something 😉
-  expect('no test written').toBe('tested');
+  // TODO: change the expect to actually test something
+  const {getByTestId} = render(<App />);
+  expect(getByTestId("theme")).toBeInTheDocument();
+  fireEvent.click(getByTestId("theme"));
+  expect(getByTestId("heading")).toHaveStyle({backgroundColor: '#FFFFF'});
 });
 
 /**
@@ -45,8 +53,12 @@ test('theme button should toggle styles', () => {
  * (getByText will throw an error if it is not rendered)
  */
 test('hidden button should toggle hidden content', () => {
-  // TODO: change the expect to actually test something 😉
-  expect('no test written').toBe('tested');
+  // TODO: change the expect to actually test something
+  const {getByTestId} = render(<App />);
+
+  expect(getByTestId("hidden")).toBeInTheDocument();
+  fireEvent.click(getByTestId("hidden"));
+  expect(screen.getByText("Hide hidden content")).toBeInTheDocument();
 });
 
 
